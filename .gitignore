@@ -1,7 +1,7 @@
 node_modules/
 dist/
 coverage/
-configs/canvas.local.json
+configs/[a-zA-Z0-9_\-]+\.local\.json
 .worktrees/
 .superpowers/
 /apps/local-api/web-dist/
