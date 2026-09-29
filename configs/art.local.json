@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "adapter": "local-metadata",
+  "imageRoot": "/home/charlie/.local/share/Cryptomator/mnt/Test_Art",
+  "metadataField": "REPLACE_AFTER_COMPATIBILITY_PROBE",
+  "writableExtensions": [],
+  "keywordByTagId": {
+    "people": "People",
+    "landscape": "Landscape",
+    "boston": "Boston",
+    "maine": "Maine",
+    "waltham": "Waltham",
+    "summer": "Summer",
+    "autumn": "Autumn",
+    "spring": "Spring",
+    "cityscape": "Cityscape",
+    "nightscape": "Nightscape",
+    "gilt": "Gilt",
+    "initials": "Initials",
+    "text": "Text",
+    "representational": "Representational"
+  }
+}

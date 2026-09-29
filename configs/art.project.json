@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "id": "art",
+  "name": "Art",
+  "groups": [
+    {
+      "id": "subject",
+      "label": "Subject",
+      "selection": "many",
+      "tags": [
+        { "id": "people", "label": "People" },
+        { "id": "landscape", "label": "Landscape" }
+      ]
+    },
+    {
+      "id": "location",
+      "label": "Location",
+      "selection": "one",
+      "tags": [
+        { "id": "boston", "label": "Boston" },
+        { "id": "maine", "label": "Maine" },
+        { "id": "waltham", "label": "Waltham" },
+        { "id": "other", "label": "Other" }
+      ]
+    },
+    {
+      "id": "season",
+      "label": "Season",
+      "selection": "one",
+      "tags": [
+        { "id": "summer", "label": "Summer" },
+        { "id": "autumn", "label": "Autumn" },
+        { "id": "spring", "label": "Spring" },
+        { "id": "winter", "label": "Winter" }
+      ]
+    },
+    {
+      "id": "style",
+      "label": "Style",
+      "selection": "many",
+      "tags": [
+        { "id": "cityscape", "label": "Cityscape" },
+        { "id": "nightscape", "label": "Nightscape" },
+        { "id": "landscape", "label": "Landscape" },
+        { "id": "portrait", "label": "Portrait" },
+        { "id": "abstract", "label": "Abstract" },
+        { "id": "initials", "label": "Initials" },
+        { "id": "text", "label": "Text" },
+        { "id": "representational", "label": "Representational" }
+      ]
+    },
+    {
+      "id": "material",
+      "label": "Material",
+      "selection": "many",
+      "tags": [
+        { "id": "gilt", "label": "Gilt" },
+        { "id": "acrylic", "label": "Acrylic" },
+        { "id": "oil", "label": "Oil" },
+        { "id": "watercolor", "label": "Watercolor" }
+      ]
+    }
+  ],
+  "booleanTags": [
+    { "id": "shows-face", "label": "Shows face" }
+  ]
+}
