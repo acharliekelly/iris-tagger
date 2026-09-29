@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "id": "parthenos",
+  "name": "Parthenos",
+  "groups": [
+    {
+      "id": "type",
+      "label": "Type",
+      "selection": "one",
+      "tags": [
+        { "id": "amateur", "label": "Amateur" },
+        { "id": "professional", "label": "Professional" }
+      ]
+    },
+    {
+      "id": "count",
+      "label": "Count",
+      "selection": "one",
+      "tags": [
+        { "id": "individual", "label": "Individual" },
+        { "id": "pair", "label": "Pair" },
+        { "id": "group", "label": "Group" }
+      ]
+    },
+    {
+      "id": "activity",
+      "label": "Activity",
+      "selection": "many",
+      "tags": [
+        { "id": "pose", "label": "Posed" },
+        { "id": "candid", "label": "Candid" },
+        { "id": "selfie", "label": "Selfie" },
+        { "id": "sport", "label": "Sport" },
+        { "id": "sex", "label": "Sex" },
+        { "id": "other", "label": "Other" }
+      ]
+    },
+    {
+      "id": "ethnicity",
+      "label": "Ethnicity",
+      "selection": "one",
+      "tags": [
+        { "id": "white", "label": "White" },
+        { "id": "black", "label": "Black" },
+        { "id": "asian", "label": "Asian" },
+        { "id": "latina", "label": "Latina" },
+        { "id": "indian", "label": "Indian" },
+        { "id": "other", "label": "Other" }
+      ]
+    },
+    {
+      "id": "age",
+      "label": "Age",
+      "selection": "one",
+      "tags": [
+        { "id": "young", "label": "Young" },
+        { "id": "teen", "label": "Teen" },
+        { "id": "adult", "label": "Adult" }
+      ]
+    },
+    {
+      "id": "chest",
+      "label": "Chest",
+      "selection": "one",
+      "tags": [
+        { "id": "flat", "label": "Flat" },
+        { "id": "small", "label": "Small" },
+        { "id": "medium", "label": "Medium" },
+        { "id": "large", "label": "Large" },
+        { "id": "extra-large", "label": "Extra Large" }
+      ]
+    },
+    {
+      "id": "chest-ext",
+      "label": "Chest (Extended)",
+      "selection": "many",
+      "tags": [
+        { "id": "perky", "label": "Perky" },
+        { "id": "puffy", "label": "Puffy" }
+      ]
+    },
+    {
+      "id": "pubic-hair",
+      "label": "Pubic Hair",
+      "selection": "one",
+      "tags": [
+        { "id": "shaved", "label": "Shaved" },
+        { "id": "trimmed", "label": "Trimmed" },
+        { "id": "natural", "label": "Natural" }
+      ]
+    },
+    {
+      "id": "pubic-hair-ext",
+      "label": "Pubic Hair (Extended)",
+      "selection": "many",
+      "tags": [
+        { "id": "bushy", "label": "Bushy" },
+        { "id": "landing-strip", "label": "Landing Strip" }
+      ]
+    },
+    {
+      "id": "genitals",
+      "label": "Genitals",
+      "selection": "one",
+      "tags": [
+        { "id": "male", "label": "Male" },
+        { "id": "female", "label": "Female" }
+      ]
+    },
+    {
+      "id": "hair",
+      "label": "Hair",
+      "selection": "one",
+      "tags": [
+        { "id": "blonde", "label": "Blonde" },
+        { "id": "brunette", "label": "Brunette" },
+        { "id": "ginger", "label": "Ginger" },
+        { "id": "black", "label": "Black" }
+      ]
+    },
+    {
+      "id": "setting",
+      "label": "Setting",
+      "selection": "one",
+      "tags": [
+        { "id": "indoor", "label": "Indoor" },
+        { "id": "urban", "label": "urban" },
+        { "id": "beach", "label": "Beach" },
+        { "id": "nature", "label": "Nature" },
+        { "id": "other", "label": "Other" }
+      ]
+    }
+  ],
+  "booleanTags": [
+    { "id": "tribal", "label": "Tribal" },
+    { "id": "shows-face", "label": "Shows face" },
+    { "id": "tattoo", "label": "Has Tattoo" },
+    { "id": "oops", "label": "Oops" },
+    { "id": "flash", "label": "Flash" },
+    { "id": "drunk", "label": "Drunk" },
+    { "id": "drawing", "label": "Drawing" }
+
+  ]
+}

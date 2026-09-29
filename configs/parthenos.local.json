@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "adapter": "local-metadata",
+  "imageRoot": "/home/charlie/.local/share/Cryptomator/mnt/training_data/images",
+  "metadataField": "REPLACE_AFTER_COMPATIBILITY_PROBE",
+  "writableExtensions": [],
+  "keywordByTagId": {
+    "sport": "Sport",
+    "amateur": "Amateur",
+    "pro": "Pro",
+    "group": "Group"
+  }
+}
