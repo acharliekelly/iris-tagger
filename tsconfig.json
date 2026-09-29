@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": { "composite": false, "noEmit": true, "jsx": "react-jsx", "lib": ["ES2022", "DOM", "DOM.Iterable"], "types": ["vite/client"] },
+  "include": ["packages/core/src/**/*.ts", "packages/config/src/**/*.ts", "packages/adapters/local-metadata/src/**/*.ts", "apps/local-api/src/**/*.ts", "apps/web/src/**/*.ts", "apps/web/src/**/*.tsx", "vite.config.ts"]
+}

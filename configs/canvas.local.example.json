@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "adapter": "local-metadata",
+  "imageRoot": "/absolute/path/to/mounted/CANVAS/images",
+  "metadataField": "REPLACE_AFTER_COMPATIBILITY_PROBE",
+  "writableExtensions": [],
+  "keywordByTagId": {
+    "people": "People",
+    "landscape": "Landscape",
+    "boston": "Boston",
+    "maine": "Maine",
+    "shows-face": "ShowsFace"
+  }
+}

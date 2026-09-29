@@ -65,7 +65,7 @@
 - `ProjectConfig = { schemaVersion: 1; id: string; name: string; groups: TagGroup[]; booleanTags: BooleanTag[] }`
 - `ImageRecord = { id: string; fileName: string; mimeType: string; writable: boolean; readOnlyReason?: string }`; local paths remain private to the adapter.
 - `ImageWithTags = { image: ImageRecord; tagIds: string[]; conflictedGroupIds: string[] }`
-- `TagMutation = { add?: string[]; remove?: string[] }`
+- `TagMutation = { add?: string[]; remove?: string[]; restore?: string[] }`
 - `TagUpdateResult = { tagIds: string[]; replacedTagIds: string[]; conflictedGroupIds: string[] }`
 - `ImageProvider = { listImages(): Promise<ImageWithTags[]>; getPreview(imageId: string): Promise<Uint8Array>; updateTags(imageId: string, mutation: TagMutation): Promise<TagUpdateResult> }`
 - `LocalMetadataConfig = { schemaVersion: 1; adapter: "local-metadata"; imageRoot: string; metadataField: string; writableExtensions: string[]; keywordByTagId: Record<string, string> }`
@@ -74,13 +74,13 @@
 - `validateProjectConfig(input: unknown): ProjectConfig`
 - `validateLocalMetadataConfig(input: unknown, project: ProjectConfig): LocalMetadataConfig`
 
-- [ ] **Step 1: Initialize the new `iris-tagger` Git repository, create the npm workspace, configure Vitest, and add root scripts and `.gitignore`.** Keep `configs/canvas.local.json` ignored.
-- [ ] **Step 2: Write failing tests** for one-choice replacement, many-choice coexistence, independent boolean add/remove, explicit resolution of an existing same-group conflict, unknown tag IDs, duplicate tag IDs, invalid group cardinality, and unknown project schema version. Also test local-adapter config for incomplete/extra tag mappings, duplicate keyword mappings, unsupported schema version, and non-absolute image roots.
-- [ ] **Step 3: Run `npm test -- --run`; confirm the new behavior tests fail.**
-- [ ] **Step 4: Implement shared types, project and local-adapter Zod validation, and pure tag transition functions.** Replacing multiple existing values in a single-choice group is allowed only when the user explicitly adds a chosen value from that same group.
-- [ ] **Step 5: Add tracked `canvas.project.json` and placeholder `canvas.local.example.json`; document how the user creates `canvas.local.json` with the mounted path.**
-- [ ] **Step 6: Run `npm test -- --run` and confirm all core/config tests pass.**
-- [ ] **Step 7: Commit as `feat: establish Iris workspace and tagging model`.**
+- [x] **Step 1: Initialize the new `iris-tagger` Git repository, create the npm workspace, configure Vitest, and add root scripts and `.gitignore`.** Keep `configs/canvas.local.json` ignored.
+- [x] **Step 2: Write failing tests** for one-choice replacement, many-choice coexistence, independent boolean add/remove, explicit resolution of an existing same-group conflict, unknown tag IDs, duplicate tag IDs, invalid group cardinality, and unknown project schema version. Also test local-adapter config for incomplete/extra tag mappings, duplicate keyword mappings, unsupported schema version, and non-absolute image roots.
+- [ ] **Step 3: Run `npm test -- --run`; confirm the new behavior tests fail.** (Not observed before implementation; final suite is green.)
+- [x] **Step 4: Implement shared types, project and local-adapter Zod validation, and pure tag transition functions.** Replacing multiple existing values in a single-choice group is allowed only when the user explicitly adds a chosen value from that same group.
+- [x] **Step 5: Add tracked `canvas.project.json` and placeholder `canvas.local.example.json`; document how the user creates `canvas.local.json` with the mounted path.**
+- [x] **Step 6: Run `npm test -- --run` and confirm all core/config tests pass.**
+- [x] **Step 7: Commit as `feat: establish Iris workspace and tagging model`.**
 
 ## Task 2: CANVAS metadata compatibility and adapter
 
@@ -96,17 +96,17 @@
 **Interfaces:**
 - `ImageRecord = { id: string; fileName: string; mimeType: string; writable: boolean; readOnlyReason?: string }`; local paths remain private to the adapter.
 - `ImageWithTags = { image: ImageRecord; tagIds: string[]; conflictedGroupIds: string[] }`
-- `TagMutation = { add?: string[]; remove?: string[] }`
+- `TagMutation = { add?: string[]; remove?: string[]; restore?: string[] }`
 - `ImageProvider = { listImages(): Promise<ImageWithTags[]>; getPreview(imageId: string): Promise<Uint8Array>; updateTags(imageId: string, mutation: TagMutation): Promise<TagUpdateResult> }`
 - `CanvasImageProvider implements ImageProvider`; internal metadata operations preserve keywords not mapped by `keywordByTagId`.
 
-- [ ] **Step 1: Write failing adapter tests** using temporary image copies: list only supported files below imageRoot, reject path traversal and symlink escapes, read current tag IDs, update managed keywords while preserving unknown keywords, handle absent keyword metadata, and surface write failures.
-- [ ] **Step 2: Run `npm test -- --run packages/adapters/local-metadata`; confirm the expected tests fail.**
-- [ ] **Step 3: Perform a read-only compatibility probe** on representative copies from the user’s CANVAS formats using ExifTool. Record the actual subject/keyword field and which formats permit safe embedded writes in `docs/canvas-metadata-compatibility.md`; update the local-adapter config sample to that verified field.
-- [ ] **Step 4: Implement `CanvasImageProvider` with image discovery constrained to imageRoot and metadata read/write through ExifTool.** Keep local paths inside the adapter, invoke ExifTool without a shell, use the probed field and `keywordByTagId` mapping, update only managed keywords after reading current metadata, then re-read the file and return confirmed assignments.
-- [ ] **Step 5: Implement in-memory preview generation with no persistent thumbnail cache.**
-- [ ] **Step 6: Run adapter tests against fixture copies and verify a write changes keywords while preserving unrelated keywords and image pixels.**
-- [ ] **Step 7: Commit as `feat: add CANVAS image metadata adapter`.**
+- [x] **Step 1: Write failing adapter tests** using temporary image copies: list only supported files below imageRoot, reject path traversal and symlink escapes, read current tag IDs, update managed keywords while preserving unknown keywords, handle absent keyword metadata, and surface write failures.
+- [ ] **Step 2: Run `npm test -- --run packages/adapters/local-metadata`; confirm the expected tests fail.** (Not observed before implementation; final adapter suite is green.)
+- [ ] **Step 3: Perform a read-only compatibility probe** on representative copies from the user’s CANVAS formats using ExifTool. Record the actual subject/keyword field and which formats permit safe embedded writes in `docs/canvas-metadata-compatibility.md`; update the local-adapter config sample to that verified field. (Pending: the implementation environment has no mounted CANVAS copies or ExifTool executable.)
+- [x] **Step 4: Implement `CanvasImageProvider` with image discovery constrained to imageRoot and metadata read/write through ExifTool.** Keep local paths inside the adapter, invoke ExifTool without a shell, use the configured (probe-pending) field and `keywordByTagId` mapping, update only managed keywords after reading current metadata, then re-read the file and return confirmed assignments.
+- [x] **Step 5: Implement in-memory preview generation with no persistent thumbnail cache.**
+- [ ] **Step 6: Run adapter tests against fixture copies and verify a write changes keywords while preserving unrelated keywords and image pixels.** (Pending on the real ExifTool compatibility probe; automated tests currently use an injected metadata store.)
+- [x] **Step 7: Commit as `feat: add CANVAS image metadata adapter`.**
 
 ## Task 3: Local API
 
@@ -124,13 +124,13 @@
 - `PUT /api/images/:imageId/tags` accepts `TagMutation` and returns confirmed resulting assignments plus any replaced tag IDs.
 - `createServer(config: ProjectConfig, provider: ImageProvider): FastifyInstance`
 
-- [ ] **Step 1: Write failing route tests** for project config without adapter paths, list/preview/update, one-choice replacement, malformed payload, unsupported image, multiple values added to the same single-choice group in one request, and adapter write failure.
-- [ ] **Step 2: Add tests proving unknown opaque image IDs cannot access files and cross-origin mutations fail.** Path traversal and symlink escape belong to the adapter tests in Task 2.
-- [ ] **Step 3: Run `npm test -- --run apps/local-api`; confirm tests fail before implementation.**
-- [ ] **Step 4: Implement Fastify routes using shared project rules and the generic `ImageProvider` contract; never return local adapter config or absolute imageRoot to the browser.**
-- [ ] **Step 5: Bind startup to `127.0.0.1`, validate Host/Origin for mutations, proxy `/api` through Vite in development, serve the production web build from the API origin, and return previews with `Cache-Control: no-store`.**
-- [ ] **Step 6: Run local API tests and confirm API errors never return updated assignments after failed writes.**
-- [ ] **Step 7: Commit as `feat: add loopback image tagging API`.**
+- [ ] **Step 1: Write failing route tests** for project config without adapter paths, list/preview/update, one-choice replacement, malformed payload, unsupported image, multiple values added to the same single-choice group in one request, and adapter write failure. (Tests exist; red behavior run was not observed before implementation.)
+- [x] **Step 2: Add tests proving unknown opaque image IDs cannot access files and cross-origin mutations fail.** Path traversal and symlink escape belong to the adapter tests in Task 2.
+- [ ] **Step 3: Run `npm test -- --run apps/local-api`; confirm tests fail before implementation.** (Not observed before implementation; final API suite is green.)
+- [x] **Step 4: Implement Fastify routes using shared project rules and the generic `ImageProvider` contract; never return local adapter config or absolute imageRoot to the browser.**
+- [x] **Step 5: Bind startup to `127.0.0.1`, validate Host/Origin for mutations, proxy `/api` through Vite in development, serve the production web build from the API origin, and return previews with `Cache-Control: no-store`.**
+- [x] **Step 6: Run local API tests and confirm API errors never return updated assignments after failed writes.**
+- [x] **Step 7: Commit as `feat: add loopback image tagging API`.**
 
 ## Task 4: React tagging interface
 
@@ -147,13 +147,13 @@
 - `fetchImages(): Promise<ImageWithTags[]>`
 - `updateImageTags(imageId: string, change: TagMutation): Promise<TagUpdateResult>`
 
-- [ ] **Step 1: Write failing component tests** for selection/highlighting, drag-to-bin, click-to-apply, removal, replacement with Undo, and visible pre-existing conflicts.
-- [ ] **Step 2: Run `npm test -- --run apps/web`; confirm the new tests fail.**
-- [ ] **Step 3: Implement the API client and React workspace using `@dnd-kit/react`; after a drop, show pending state and only update confirmed tag state after API success.**
-- [ ] **Step 4: Implement click-based add/remove actions and Undo for single-choice replacement.**
-- [ ] **Step 5: Show API/write errors without changing the last confirmed assignments; show unsupported files as read-only.**
-- [ ] **Step 6: Run component tests and `npm run build`; confirm they pass.**
-- [ ] **Step 7: Commit as `feat: build CANVAS image tagging interface`.**
+- [x] **Step 1: Write failing component tests** for selection/highlighting, drag-to-bin, click-to-apply, removal, replacement with Undo, and visible pre-existing conflicts.
+- [x] **Step 2: Run `npm test -- --run apps/web`; confirm the new tests fail.**
+- [x] **Step 3: Implement the API client and React workspace using `@dnd-kit/react`; after a drop, show pending state and only update confirmed tag state after API success.**
+- [x] **Step 4: Implement click-based add/remove actions and Undo for single-choice replacement.**
+- [x] **Step 5: Show API/write errors without changing the last confirmed assignments; show unsupported files as read-only.**
+- [x] **Step 6: Run component tests and `npm run build`; confirm they pass.**
+- [x] **Step 7: Commit as `feat: build CANVAS image tagging interface`.**
 
 ## Task 5: End-to-end verification and run instructions
 
@@ -162,11 +162,11 @@
 - Create: `README.md`
 - Modify: root workspace scripts as needed.
 
-- [ ] **Step 1: Add an end-to-end test** that copies fixtures to a temporary root, loads CANVAS config, lists/previews an image, applies a tag, verifies embedded keywords, and verifies unrelated keywords remain.
-- [ ] **Step 2: Test a failed write and an unmounted/unavailable image root; verify API errors and that the UI retains its previous confirmed state.**
-- [ ] **Step 3: Run `npm test -- --run` and `npm run build`; confirm all tests and the production build pass.**
-- [ ] **Step 4: Document install/start commands, ExifTool requirement, imageRoot configuration, supported file formats, and the copy-first validation workflow.**
-- [ ] **Step 5: Commit as `docs: document CANVAS MVP setup and verification`.**
+- [x] **Step 1: Add an end-to-end integration test** with a generated temporary raster, CANVAS project config, and injected metadata store; verify list/preview/tagging, unmanaged-keyword retention, and unchanged pixels. Real embedded metadata verification remains pending on the compatibility probe.
+- [x] **Step 2: Test a failed write and an unmounted/unavailable image root; verify API errors and that the UI retains its previous confirmed state.**
+- [x] **Step 3: Run `npm test -- --run` and `npm run build`; confirm all tests and the production build pass.**
+- [x] **Step 4: Document install/start commands, ExifTool requirement, imageRoot configuration, the pending supported-format matrix, and the copy-first validation workflow.**
+- [x] **Step 5: Commit as `docs: document CANVAS MVP setup and verification`.**
 
 ## Execution notes
 

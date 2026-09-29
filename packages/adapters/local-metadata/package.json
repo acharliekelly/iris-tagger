@@ -1,0 +1,7 @@
+{
+  "name": "@iris-tagger/local-metadata",
+  "private": true,
+  "type": "module",
+  "dependencies": { "@iris-tagger/core": "*", "@iris-tagger/config": "*", "sharp": "^0.33.5" },
+  "exports": { ".": "./src/canvas-image-provider.ts" }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@iris-tagger/local-api",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@iris-tagger/core": "*",
+    "@iris-tagger/config": "*",
+    "@iris-tagger/local-metadata": "*",
+    "fastify": "^5.2.0",
+    "@fastify/static": "^10.1.5"
+  }
+}

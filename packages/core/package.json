@@ -1,0 +1,6 @@
+{
+  "name": "@iris-tagger/core",
+  "private": true,
+  "type": "module",
+  "exports": { "./types": "./src/types.ts", "./tag-transitions": "./src/tag-transitions.ts" }
+}

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "canvas",
+  "name": "CANVAS",
+  "groups": [
+    {
+      "id": "subject",
+      "label": "Subject",
+      "selection": "many",
+      "tags": [
+        { "id": "people", "label": "People" },
+        { "id": "landscape", "label": "Landscape" }
+      ]
+    },
+    {
+      "id": "location",
+      "label": "Location",
+      "selection": "one",
+      "tags": [
+        { "id": "boston", "label": "Boston" },
+        { "id": "maine", "label": "Maine" }
+      ]
+    }
+  ],
+  "booleanTags": [
+    { "id": "shows-face", "label": "Shows face" }
+  ]
+}

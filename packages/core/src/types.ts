@@ -1,0 +1,10 @@
+export type TagDefinition = { id: string; label: string };
+export type TagGroup = { id: string; label: string; selection: 'one' | 'many'; tags: TagDefinition[] };
+export type BooleanTag = { id: string; label: string };
+export type ProjectConfig = { schemaVersion: 1; id: string; name: string; groups: TagGroup[]; booleanTags: BooleanTag[] };
+export type ImageRecord = { id: string; fileName: string; mimeType: string; writable: boolean; readOnlyReason?: string };
+export type ImageWithTags = { image: ImageRecord; tagIds: string[]; conflictedGroupIds: string[] };
+export type TagMutation = { add?: string[]; remove?: string[]; restore?: string[] };
+export type TagUpdateResult = { tagIds: string[]; replacedTagIds: string[]; conflictedGroupIds: string[] };
+export type ImageProvider = { listImages(): Promise<ImageWithTags[]>; getPreview(imageId: string): Promise<Uint8Array>; updateTags(imageId: string, mutation: TagMutation): Promise<TagUpdateResult> };
+export type LocalMetadataConfig = { schemaVersion: 1; adapter: 'local-metadata'; imageRoot: string; metadataField: string; writableExtensions: string[]; keywordByTagId: Record<string, string> };

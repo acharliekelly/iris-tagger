@@ -1,0 +1,11 @@
+{
+  "name": "@iris-tagger/web",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@dnd-kit/react": "^0.5.0",
+    "@iris-tagger/core": "*",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  }
+}

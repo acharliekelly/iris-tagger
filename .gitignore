@@ -1,0 +1,7 @@
+node_modules/
+dist/
+coverage/
+configs/canvas.local.json
+.worktrees/
+.superpowers/
+/apps/local-api/web-dist/

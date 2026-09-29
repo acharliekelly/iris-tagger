@@ -1,0 +1,36 @@
+{
+  "name": "iris-tagger",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "packages/adapters/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "build": "npm run typecheck && vite build --config vite.config.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json --pretty false",
+    "api": "tsx apps/local-api/src/main.ts",
+    "web": "vite --config vite.config.ts",
+    "dev": "concurrently -k \"npm:dev-api\" \"npm:web\"",
+    "dev-api": "cross-env IRIS_UI_ORIGIN=http://127.0.0.1:5173 tsx apps/local-api/src/main.ts"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "concurrently": "^10.0.5",
+    "cross-env": "^10.1.0",
+    "jsdom": "^25.0.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.21",
+    "vitest": "^2.1.8",
+    "zod": "^3.24.1"
+  }
+}
